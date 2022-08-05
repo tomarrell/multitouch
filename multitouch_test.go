@@ -2,8 +2,6 @@ package multitouch
 
 import (
 	"testing"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 func TestMultitouch(t *testing.T) {
@@ -20,7 +18,6 @@ func TestMultitouch(t *testing.T) {
 	}
 
 	e = mt.Next()
-	spew.Dump(e)
 	if e.Action != ActionEnd {
 		t.Fatal("action not end")
 	}
