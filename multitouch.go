@@ -21,6 +21,11 @@ func (a Action) String() string {
 }
 
 const (
+	screenWidth  = 480
+	screenHeight = screenWidth
+)
+
+const (
 	ActionUnknown Action = iota
 	ActionBegin
 	ActionMove
@@ -124,6 +129,10 @@ func (m *Multitouch) processInput() {
 			}
 		}
 	}
+}
+
+func tansformPoint(x, y int) (xp int, yp int) {
+	return screenWidth - y, x
 }
 
 func getSlot(slots *slots, slot int) (event *TouchEvent, exists bool) {
