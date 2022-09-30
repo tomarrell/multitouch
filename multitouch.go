@@ -1,4 +1,3 @@
-// TODO implement rotation transformation to account for screen orientation.
 package multitouch
 
 type Action int
