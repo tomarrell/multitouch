@@ -39,23 +39,25 @@ type TouchEvent struct {
 type slots [10]*TouchEvent
 
 type Multitouch struct {
-	dev   *inputDevice
-	out   chan TouchEvent
-	slots slots
+	dev       *inputDevice
+	out       chan TouchEvent
+	slots     slots
+	transform bool
 }
 
 // NewMultitouch creates a new multitouch device, interpreting evdev events from
 // the kernel. Path is the string path to the evdevice.
-func NewMultitouch(path string) (*Multitouch, error) {
+func NewMultitouch(path string, transform bool) (*Multitouch, error) {
 	dev, err := open(path)
 	if err != nil {
 		return nil, err
 	}
 
 	m := &Multitouch{
-		dev:   dev,
-		out:   make(chan TouchEvent),
-		slots: [10]*TouchEvent{},
+		dev:       dev,
+		out:       make(chan TouchEvent),
+		slots:     [10]*TouchEvent{},
+		transform: transform,
 	}
 
 	return m, nil
@@ -117,7 +119,10 @@ func (m *Multitouch) processInput() {
 		case EV_SYN:
 			for k := range modified {
 				o := *m.slots[k]
-				o.X, o.Y = transformPoint(o.X, o.Y)
+
+				if m.transform {
+					o.X, o.Y = transformPoint(o.X, o.Y)
+				}
 
 				m.out <- o
 				delete(modified, k)

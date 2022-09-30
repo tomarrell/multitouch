@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestMultitouch_single_touches(t *testing.T) {
-	mt, err := NewMultitouch("./testdata/evdump")
+func TestMultitouch_single_touches_with_transform(t *testing.T) {
+	mt, err := NewMultitouch("./testdata/evdump", true)
 	if err != nil {
 		t.Fatal(err)
 	}
