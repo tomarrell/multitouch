@@ -1,8 +1,6 @@
 // TODO implement rotation transformation to account for screen orientation.
 package multitouch
 
-import "fmt"
-
 type Action int
 
 func (a Action) String() string {
@@ -118,10 +116,7 @@ func (m *Multitouch) processInput() {
 			}
 
 		case EV_SYN:
-			fmt.Println("SYN")
 			for k := range modified {
-				fmt.Println(m.slots[k])
-
 				o := *m.slots[k]
 				o.X, o.Y = transformPoint(o.X, o.Y)
 
