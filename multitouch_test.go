@@ -77,6 +77,10 @@ func Test_transformPoint(t *testing.T) {
 	}{
 		{"top left corner", args{153, 350}, 130, 153},
 		{"bottom left corner", args{153, 350}, 130, 153},
+		{"top right corner", args{31, 12}, 468, 31},
+		{"bottom right corner", args{457, 20}, 460, 457},
+		{"top left corner 2", args{20, 454}, 26, 20},
+		{"bottom left corner 2", args{462, 461}, 19, 462},
 	}
 
 	for _, tt := range tests {
