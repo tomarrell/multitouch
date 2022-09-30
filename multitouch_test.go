@@ -81,7 +81,7 @@ func Test_transformPoint(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			gotXp, gotYp := tansformPoint(tt.args.x, tt.args.y)
+			gotXp, gotYp := transformPoint(tt.args.x, tt.args.y)
 			if gotXp != tt.wantXp {
 				t.Errorf("tansformPoint() gotXp = %v, want %v", gotXp, tt.wantXp)
 			}

@@ -121,7 +121,11 @@ func (m *Multitouch) processInput() {
 			fmt.Println("SYN")
 			for k := range modified {
 				fmt.Println(m.slots[k])
-				m.out <- *m.slots[k]
+
+				o := *m.slots[k]
+				o.X, o.Y = transformPoint(o.X, o.Y)
+
+				m.out <- o
 				delete(modified, k)
 				if m.slots[k].Action == ActionEnd {
 					m.slots[k] = nil
@@ -131,7 +135,7 @@ func (m *Multitouch) processInput() {
 	}
 }
 
-func tansformPoint(x, y int) (xp int, yp int) {
+func transformPoint(x, y int) (xp int, yp int) {
 	return screenWidth - y, x
 }
 
