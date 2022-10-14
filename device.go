@@ -11,10 +11,10 @@ import (
 )
 
 type evdevEvent struct {
-	Time  unix.Timeval32 // time in seconds since epoch at which event occurred
-	Type  EventType      // event type - one of ecodes.EV_*
-	Code  EventCode      // event code related to the event type
-	Value int32          // event value related to the event type
+	Time  unix.Timeval // time in seconds since epoch at which event occurred
+	Type  EventType    // event type - one of ecodes.EV_*
+	Code  EventCode    // event code related to the event type
+	Value int32        // event value related to the event type
 }
 
 const eventsize = int(unsafe.Sizeof(evdevEvent{}))
