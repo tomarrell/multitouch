@@ -67,6 +67,10 @@ func (m *Multitouch) Begin() {
 	m.processInput()
 }
 
+func (m *Multitouch) Out() chan TouchEvent {
+	return m.out
+}
+
 func (m *Multitouch) Next() TouchEvent {
 	return <-m.out
 }
